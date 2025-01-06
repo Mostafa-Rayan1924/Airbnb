@@ -62,7 +62,25 @@
   .explore {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
+  .rdrCalendarWrapper {
+    font-size: 11px !important;
+  }
 }
+.rdrStaticRangeLabel {
+  color: black !important;
+}
+.dark .rdrInputRangeInput {
+  color: white !important;
+}
+.rdrInputRange span {
+  color: black !important;
+}
+@media (max-width: 600px) {
+  .rdrDefinedRangesWrapper {
+    display: none !important;
+  }
+}
+
 @layer base {
   * {
     @apply border-border;

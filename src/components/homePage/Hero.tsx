@@ -2,7 +2,7 @@ const Hero = () => {
   return (
     <section className="relative  bg-[url(https://images.unsplash.com/photo-1604014237800-1c9102c219da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80)] bg-cover bg-center bg-no-repeat">
       <div className="absolute inset-0 bg-background/25  from-background/65 to-background/25 bg-gradient-to-r "></div>
-      <div className="relative py-10 sm:py-0 container justify-center text-center lg:flex lg:h-[90vh] lg:items-center ">
+      <div className="relative py-10 lg:py-0 container justify-center text-center lg:flex lg:h-[90vh] lg:items-center ">
         <div className="">
           <h1 className="text-3xl font-extrabold sm:text-5xl">
             Let us find your

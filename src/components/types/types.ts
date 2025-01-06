@@ -9,3 +9,15 @@ export type liveDataItem = {
   title: string;
 };
 export type liveDataParent = liveDataItem[];
+export type searchDataItem = {
+  img: string;
+  location: string;
+  title: string;
+  description: string;
+  star: number;
+  price: string;
+  total: string;
+  long: number;
+  lat: number;
+};
+export type searchDataParent = searchDataItem[];
