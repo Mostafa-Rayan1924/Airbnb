@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
@@ -8,14 +8,23 @@ import { enGB } from "date-fns/locale";
 import { User2Icon } from "lucide-react";
 import { Button, buttonVariants } from "../ui/button";
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
+
 const SearchBar = () => {
   let [inp, setInp] = useState<string>("");
   let [numOfGuests, setNumOfGuests] = useState<number>(1);
   let pathName = usePathname();
-  const searchParams = useSearchParams();
   let [startDate, setStartDate] = useState(new Date());
   let [endDate, setEndDate] = useState(new Date());
+  let [searchParams, setSearchParams] = useState<{ location?: string } | null>(
+    null
+  );
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setSearchParams({ location: params.get("location") || "" });
+  }, []);
+
   const formatDate = (date: Date) => {
     return date.toLocaleDateString("en-uk", {
       day: "2-digit",
@@ -23,26 +32,29 @@ const SearchBar = () => {
       year: "numeric",
     });
   };
+
   const selectionRange = {
     startDate: startDate,
     endDate: endDate,
     key: "selection",
   };
+
   let handleSelect = (ranges: RangeKeyDict) => {
     setStartDate(ranges.selection.startDate as Date);
     setEndDate(ranges.selection.endDate as Date);
   };
+
   return (
     <>
-      <div className="flex items-center justify-between w-1/2 rounded-full px-4 py-2   border-2 border-border">
+      <div className="flex items-center justify-between w-1/2 rounded-full px-4 py-2 border-2 border-border">
         <input
           value={inp}
           onChange={(e) => setInp(e.target.value)}
           type="search"
-          className="w-full outline-none bg-transparent "
+          className="w-full outline-none bg-transparent"
           placeholder={
             pathName === "/search"
-              ? `${searchParams.get("location")} | ${formatDate(
+              ? `${searchParams?.location || ""} | ${formatDate(
                   startDate
                 )} - ${formatDate(endDate)} | ${numOfGuests}`
               : "Search"
@@ -53,9 +65,9 @@ const SearchBar = () => {
         </div>
       </div>
       {inp && (
-        <div className="absolute border-b-border border-2    rounded-lg top-[103%] left-1/2 translate-x-[-50%] p-2  bg-white ">
+        <div className="absolute border-b-border border-2 rounded-lg top-[103%] left-1/2 translate-x-[-50%] p-2 bg-white">
           <DateRangePicker
-            className="overflow-x-auto  "
+            className="overflow-x-auto"
             ranges={[selectionRange]}
             onChange={handleSelect}
             rangeColors={["#FD5B78"]}
@@ -67,7 +79,7 @@ const SearchBar = () => {
             <div className="flex items-center gap-2">
               <User2Icon className="size-6 text-black" />
               <input
-                className="border-border border text-black w-14 rounded-lg p-1 outline-none bg-transparent "
+                className="border-border border text-black w-14 rounded-lg p-1 outline-none bg-transparent"
                 value={numOfGuests}
                 onChange={(e) => setNumOfGuests(Number(e.target.value))}
                 type="number"
