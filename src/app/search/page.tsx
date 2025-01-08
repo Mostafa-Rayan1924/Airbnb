@@ -9,9 +9,9 @@ const SearchPage = async () => {
       <div className="space-y-4">
         <HeadSearch />
         <div className="grid grid-cols-1 gap-4">
-          {data?.map((item) => (
-            <SearchCard item={item} />
-          ))}
+          {data.map((item) => {
+            return <SearchCard item={item} />;
+          })}
         </div>
       </div>
       <div className="size-full ">
