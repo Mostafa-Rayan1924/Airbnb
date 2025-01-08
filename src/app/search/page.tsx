@@ -2,7 +2,6 @@ import { getSearchData } from "@/api/app";
 import SearchCard from "@/components/SearchCard";
 import HeadSearch from "@/components/Sharable/HeadSearch";
 import { searchDataParent } from "@/components/types/types";
-
 const SearchPage = async () => {
   let data: searchDataParent = await getSearchData();
   return (
