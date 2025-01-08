@@ -1,8 +1,6 @@
 import Image from "next/image";
 import SearchBar from "./SearchBar";
 import { ModeToggle } from "./ModeToggle";
-import { Button, buttonVariants } from "../ui/button";
-import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 const Navbar = () => {
@@ -21,7 +19,6 @@ const Navbar = () => {
         <SearchBar />
         <div className="flex items-center gap-2">
           <ModeToggle />
-          <Button className={cn(buttonVariants({ size: "sm" }))}>Arabic</Button>
         </div>
       </div>
     </header>
